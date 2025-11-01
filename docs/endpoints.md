@@ -14,7 +14,6 @@ Base URL: `/api/`
 | POST   | `/auth/login/google`      | Login using Google OAuth |
 | POST   | `/auth/logout`            | Logout |
 | GET    | `/auth/me`                | Get current authenticated user |
-| GET    | `/auth/reset/`            | Reset Password |
 | POST   | `/auth/reset/`          | Reset Password |
 
 ---
@@ -72,7 +71,6 @@ Base URL: `/api/`
 
 | Method | Endpoint  |
 |--------|-----------|
-| GET    | /contacts/|
 | POST   | `/contact/` |
 
 ---
