@@ -42,13 +42,6 @@ src/
 │   │   └── ...
 │   └── axiosInstance.ts     # Configured Axios instance
 │
-├── store/                   # Redux or Zustand store (if used)
-│   └── userSlice.ts
-│
-├── utils/                   # Helper functions
-│   ├── formatDate.ts
-│   ├── validation.ts
-│   └── constants.ts
 │
 ├── styles/                  # Global styles
 │   ├── index.css
