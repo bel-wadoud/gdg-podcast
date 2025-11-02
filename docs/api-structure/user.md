@@ -68,7 +68,8 @@ Base URL: `/api/`
   "id": 45,
   "email": "user@example.com",
   "username": "username",
-  "avatar": "/media/avatars/user.png"
+  "avatar": "/media/avatars/user.png",
+  "last_viewed": 20,
 }
 ```
 

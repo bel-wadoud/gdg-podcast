@@ -17,7 +17,6 @@
   "admin": {
     "id": 1,
     "email": "admin@mail.com",
-    "role": "superadmin"
   }
 }
 ```
@@ -43,8 +42,11 @@
 ### Delete Admin
 #### DELETE `/admin/add/<admin_id>`
 **Response**
+```json
+```
 { "detail": "Admin removed" }
-
+```
+```
 ### Create Podcast
 #### POST | `/admin/podcasts/new/`
 **Request**
