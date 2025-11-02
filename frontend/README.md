@@ -1,13 +1,14 @@
 # GDG-podcast (frontend)
 
-## Folder structure
+## 📁 Folder Structure
+
 
 src/
 │
 ├── assets/ # Static files (images, fonts, icons, etc.)
 │ ├── images/
 │ ├── icons/
-│
+│ └── fonts/
 │
 ├── components/ # Reusable UI components (buttons, inputs, cards)
 │ ├── common/ # Shared between multiple pages
@@ -40,6 +41,14 @@ src/
 │ │ ├── userApi.ts
 │ │ └── ...
 │ └── axiosInstance.ts # Configured Axios instance
+│
+├── store/ # Redux or Zustand store (if used)
+│ └── userSlice.ts
+│
+├── utils/ # Helper functions
+│ ├── formatDate.ts
+│ ├── validation.ts
+│ └── constants.ts
 │
 ├── styles/ # Global styles
 │ ├── index.css
