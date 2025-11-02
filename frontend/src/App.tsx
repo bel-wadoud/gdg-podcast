@@ -1,11 +1,11 @@
 import "./style/App.css";
-import { Button } from "./components/ui/button";
+import Landing from "./pages/Landing";
+
 
 function App() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <Button>click</Button>
+      <Landing />
     </>
   );
 }
