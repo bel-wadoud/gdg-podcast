@@ -1,6 +1,7 @@
-import Explore from "@/components/layout/Explore";
 import Header from "@/components/layout/Header";
-
+import Explore from "@/components/layout/Explore";
+import Voices from "@/components/layout/Voices";
+import Footer from "@/components/layout/Footer";
 
 function Landing() {
   return (<>
@@ -13,7 +14,9 @@ function Landing() {
         {/* // Podcast Section */}
         {/* // Categories Section */}
         {/* // Voices Section */}
+        <Voices />
         {/* // Footer Section */}
+        <Footer />
     </>
   );
 }
