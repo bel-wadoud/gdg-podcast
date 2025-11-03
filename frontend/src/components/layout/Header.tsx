@@ -16,21 +16,21 @@ function Header (){
                 <div className="hidden md:flex flex-row gap-8 text-lg">
                     {/* Top Podcast */}
                     <div>
-                        <button className="bg-red-400 font-semibold px-4 py-2 rounded-lg mr-4 hover:bg-red-500 transition duration-300">Top Podcast</button>
+                        <button className="bg-red-400  px-4 py-2 rounded-lg mr-4 hover:bg-red-500 transition duration-300">Top Podcast</button>
                     </div>                   
                     {/* Voices */}
                     <div>
-                        <button className="bg-amber-200 font-semibold px-4 py-2 rounded-lg mr-4 hover:bg-amber-300 transition duration-300">Voices</button>
+                        <button className="bg-amber-200  px-4 py-2 rounded-lg mr-4 hover:bg-amber-300 transition duration-300">Voices</button>
                     </div>  
                     {/* About */}
                     <div>
-                        <button className="bg-green-300 font-semibold px-4 py-2 rounded-lg mr-4 hover:bg-green-400 transition duration-300">About</button>
+                        <button className="bg-green-300  px-4 py-2 rounded-lg mr-4 hover:bg-green-400 transition duration-300">About</button>
                     </div>  
                 </div>
                 {/* login & sign up buttons*/}
                 <div className=''>
-                    <button className='bg-sky-300 font-semibold px-4 py-2 rounded-lg mr-4 hover:bg-sky-400 transition duration-300'>Login</button>
-                    <button className='bg-sky-300 font-semibold px-4 py-2 rounded-lg mr-4 hover:bg-sky-400 transition duration-300'>Sign Up</button>
+                    <button className='bg-sky-300  px-4 py-2 rounded-lg mr-4 hover:bg-sky-400 transition duration-300'>Login</button>
+                    <button className='bg-sky-300  px-4 py-2 rounded-lg mr-4 hover:bg-sky-400 transition duration-300'>Sign Up</button>
                 </div>
 
             </header>

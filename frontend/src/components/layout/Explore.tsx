@@ -12,7 +12,7 @@ function Explore() {
 
                     {/* main card */}
                     <div className="bg-green-300  p-8 hover:shadow-sm transition-shadow duration-200 relative z-10">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">Your Daily Dose of GDG Inspiration!</h2>
+                        <h2 className="text-lg md:text-4xl mb-4 font-medium text-center text-[#1B3A17]">Your Daily Dose of GDG Inspiration!</h2>
                         <p className="text-lg md:text-xl text-gray-700 mb-6 text-center">
                             Step into the world of GDG podcasts, a space made for students and tech enthusiasts who love learning.
                             Discover new concepts and experiences.
@@ -31,7 +31,7 @@ function Explore() {
             </div>
         </div>   
         <div className="flex justify-center md:justify-center">
-            <button className="bg-amber-200 font-semibold px-6 py-3 rounded-lg hover:bg-amber-400 transition duration-300">
+            <button className="bg-amber-200 px-6 py-3 rounded-lg hover:bg-amber-400 transition duration-300">
                 Start Exploring
             </button>
         </div>
