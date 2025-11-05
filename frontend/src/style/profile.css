@@ -3,20 +3,29 @@
   background-color: #f5f5f5;
   font-family: "Poppins", sans-serif;
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile-page-title {
   font-size: 1.5rem;
   color: #999;
   margin-bottom: 2rem;
+  width: 100%;
+  max-width: 1200px;
 }
 
 /* Header Styles */
 .profile-header {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 2rem;
   margin-bottom: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  flex-wrap: wrap;
 }
 
 .profile-logo {
@@ -69,8 +78,9 @@
   background-color: #fff;
   border-radius: 20px;
   padding: 2rem;
-  max-width: 500px;
-  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 2rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: relative;
 }
@@ -154,8 +164,9 @@
   background-color: #dbeafe;
   border-radius: 20px;
   padding: 2.5rem;
-  max-width: 550px;
-  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto 2rem;
 }
 
 .edit-profile-title {
@@ -273,6 +284,8 @@
 /* Saved/Guest Podcasts Section */
 .podcasts-section {
   margin-top: 2rem;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .podcasts-section-title {
@@ -280,6 +293,7 @@
   font-weight: 600;
   margin-bottom: 1.5rem;
   color: #000;
+  text-align: left;
 }
 
 .podcasts-carousel {
@@ -287,7 +301,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  max-width: 900px;
+  width: 100%;
 }
 
 .carousel-arrow-profile {
@@ -326,7 +340,8 @@
 
 .podcast-item {
   flex: 0 0 calc(33.333% - 1rem);
-  min-width: 200px;
+  min-width: 250px;
+  max-width: 400px;
 }
 
 .podcast-card-profile {
@@ -369,27 +384,46 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .podcast-item {
+    flex: 0 0 calc(50% - 0.75rem);
+    min-width: 200px;
+  }
+}
+
 @media (max-width: 768px) {
+  .profile-page {
+    padding: 1rem;
+  }
+
   .profile-header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .profile-nav {
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   .profile-card,
   .edit-profile-container {
     max-width: 100%;
+    padding: 1.5rem;
   }
 
   .edit-profile-btn {
     position: static;
     margin-top: 1rem;
+    width: 100%;
   }
 
   .podcast-item {
     flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .podcasts-section {
+    max-width: 100%;
   }
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./../style/profile.css";
-import logo from "../assets/images/about_us.png";
+import logo from "../assets/images/about_us-removebg-preview.png";
 import authService from "../services/authServices";
 import podcastService, { type Podcast } from "../services/podcastService";
 
@@ -63,7 +63,7 @@ export default function UserProfile() {
 
   return (
     <div className="profile-page">
-      <div className="profile-page-title">User's profile</div>
+      
 
       {/* Header */}
       <div className="profile-header">
