@@ -1,8 +1,9 @@
-import "./style/App.css";
+import { Routes, Route } from "react-router-dom";
+import Login from "./pages/login";
+import Signup from "./pages/signup";
 import Landing from "./pages/Landing";
 
-
-function App() {
+export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
@@ -11,5 +12,3 @@ function App() {
     </Routes>
   );
 }
-
-export default App;
