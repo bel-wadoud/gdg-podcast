@@ -125,3 +125,9 @@
   --color-success: #86efac;
   --color-info: #a3c5f1;
 }
+
+@layer components {
+  .my-container {
+    @apply px-12;
+  }
+}

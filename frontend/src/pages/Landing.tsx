@@ -1,3 +1,4 @@
+import About from "@/components/common/About";
 import Features from "@/components/common/Features";
 import Explore from "@/components/layout/Explore";
 import Header from "@/components/layout/Header";
@@ -10,6 +11,7 @@ function Landing() {
       {/* // Explore section  */}
       <Explore />
       {/* // About Section */}
+      <About />
       <Features />
       {/* // Features Section */}
       {/* // Podcast Section */}

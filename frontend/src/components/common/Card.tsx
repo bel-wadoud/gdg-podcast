@@ -1,14 +1,18 @@
 const Card = ({
   children,
   className,
+  color,
 }: {
   children: React.ReactNode;
   className?: string;
+  color: string;
 }) => {
   return (
     <div className="relative inline-block ">
       <div
-        className={`px-5 py-2.5 bg-primary h-full relative bottom-1.5 right-1.5  duration-300  hover:bottom-0 hover:right-0 border-2 border-black rounded-md  ${className}  `}
+        className={`px-5 py-2.5  ${
+          color ? color : "bg-primary"
+        }   h-full relative bottom-1.5 right-1.5  duration-300  hover:bottom-0 hover:right-0 border-2 border-black rounded-md  ${className}  `}
       >
         {children}
       </div>
