@@ -1,0 +1,125 @@
+/* ================================
+   GOOGLE-STYLE DJANGO ADMIN THEME
+   (LIGHT MODE ONLY)
+   ================================ */
+
+/* ---- HEADER ---- */
+#header {
+    background: #4285F4 !important;  /* Google Blue */
+    color: white !important;
+    border-bottom: 3px solid #0b57d0; /* darker blue */
+}
+
+/* Header title text */
+#header h1,
+#header h1 a {
+    color: white !important;
+}
+
+
+/* ---- SIDEBAR ---- */
+#nav-sidebar {
+    background: #F1F3F4 !important; /* Google light grey */
+    border-right: 1px solid #DADCE0;
+}
+
+#nav-sidebar .current-app > a {
+    background: #34A853 !important; /* Google Green */
+    color: white !important;
+}
+
+#nav-sidebar a {
+    color: #202124 !important;  /* Google Black */
+}
+
+#nav-sidebar a:hover {
+    background: #E8F0FE !important; /* faint blue */
+}
+
+
+/* ---- MODULE HEADERS / TITLES ---- */
+.module caption,
+.inline-group h2,
+.change-form h2,
+h1, h2, h3 {
+    color: #202124 !important;      /* BLACK — fixed */
+    font-weight: 600;
+}
+
+/* No yellow text anywhere */
+* {
+    --google-yellow: #FBBC04; /* but we won't use it for text */
+}
+
+
+/* ---- BUTTONS ---- */
+.button,
+input[type=submit],
+.button.default {
+    background: #4285F4 !important; /* Google Blue */
+    color: white !important;
+    border-radius: 6px;
+    border: none;
+}
+
+.button:hover,
+input[type=submit]:hover {
+    background: #3367D6 !important; /* darker Google blue */
+}
+
+
+/* ---- DELETE BUTTON ---- */
+.deletelink {
+    background: #EA4335 !important; /* Google Red */
+    color: white !important;
+    border-radius: 6px;
+}
+
+.deletelink:hover {
+    background: #C5221F !important;
+}
+
+
+/* ---- SAVE + ADD ANOTHER / SAVE AND CONTINUE ---- */
+.button.success {
+    background: #34A853 !important; /* Google Green */
+}
+
+/* yellow accent example (NOT FOR TEXT) */
+.badge-yellow {
+    background: #FBBC04 !important; /* Google Yellow */
+    color: #202124 !important;      /* readable black text */
+}
+
+
+/* ---- TABLES ---- */
+.change-list table th {
+    background: #F8F9FA !important; 
+    color: #202124 !important;      /* BLACK */
+    border-bottom: 2px solid #DADCE0;
+}
+
+.change-list table td {
+    color: #202124 !important;
+}
+
+
+/* ---- FORMS ---- */
+.form-row label {
+    color: #202124 !important;
+    font-weight: 500;
+}
+
+input,
+select,
+textarea {
+    border: 1px solid #DADCE0 !important;
+    border-radius: 4px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #4285F4 !important;
+    box-shadow: 0 0 2px #4285F4 !important;
+}
