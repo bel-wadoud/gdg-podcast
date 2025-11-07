@@ -1,0 +1,55 @@
+/* ============================
+   GOOGLE MATERIAL STYLE THEME
+   ============================ */
+
+/* Header (Google Blue 500) */
+#header {
+    background: #4285F4 !important; /* Google Blue */
+    color: #fff !important;
+    border-bottom: 3px solid #357AE8; /* Slight darker accent */
+}
+
+/* Sidebar background (Clean white) */
+#content-related,
+.module caption {
+    background: #FFFFFF !important;
+    color: #202124 !important; /* Google dark text */
+    border-left: 4px solid #4285F4 !important; /* Google blue indicator */
+}
+
+/* Buttons (Material Style Blue) */
+.button,
+input[type=submit],
+input[type=button] {
+    background: #1A73E8 !important; /* Google Blue 600 */
+    color: white !important;
+    border-radius: 6px;
+    border: none !important;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+.button:hover,
+input[type=submit]:hover,
+input[type=button]:hover {
+    background: #1669C1 !important; /* Hover shade */
+}
+
+/* Highlight selected sidebar app (Google Green 500) */
+#nav-sidebar .current-app > a {
+    background: #34A853 !important; /* Google Green */
+    color: #fff !important;
+    border-radius: 4px;
+}
+
+/* Hover items (Google Gray 200) */
+#nav-sidebar li a:hover {
+    background: #E8F0FE !important; /* Very light Google blue */
+}
+
+/* General text improvements */
+body, input, select, textarea {
+    font-family: "Roboto", sans-serif !important;
+    color: #202124 !important; /* Google dark gray */
+}
+/* Table headers (Google Gray 100) */

@@ -1,0 +1,56 @@
+# ==========================
+# PYTHON
+# ==========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environment
+venv/
+env/
+
+# ==========================
+# DJANGO
+# ==========================
+*.log
+*.pot
+*.pyc
+db.sqlite3
+db.sqlite3-journal
+
+# User uploads
+media/
+
+# Environment variables
+.env
+*.env
+.env.*
+
+# ==========================
+# STATIC
+# ==========================
+
+# Keep "static/" tracked
+# Ignore ONLY collected static (STATIC_ROOT)
+staticfiles/
+
+# ==========================
+# EDITORS / IDE
+# ==========================
+.vscode/
+.idea/
+*.iml
+
+# System
+.DS_Store
+Thumbs.db
+
+# ==========================
+# NODE (if any)
+# ==========================
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
