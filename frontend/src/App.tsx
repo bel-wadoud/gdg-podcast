@@ -6,6 +6,7 @@ import Homepage from './pages/homepage';
 import UserProfile from './pages/UserProfile';
 import EditProfile from './pages/EditProfile';
 import GuestProfile from './pages/GuestProfile';
+import ForgotPassword from './pages/ForgetPassword';
 export default function App() {
   return (
     <Routes>
@@ -16,6 +17,7 @@ export default function App() {
       <Route path="/profile" element={<UserProfile />} />
       <Route path="/profile/edit" element={<EditProfile />} />
       <Route path="/guest/:guestId" element={<GuestProfile />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
     </Routes>
   );
 }
