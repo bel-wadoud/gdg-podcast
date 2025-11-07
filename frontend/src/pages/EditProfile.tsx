@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./../style/profile.css";
-import logo from "../assets/images/about_us.png";
+import logo from "../assets/images/about_us-removebg-preview.png";
 import authService from "../services/authServices";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL  ||'http://localhost:8000/api';
@@ -27,14 +27,14 @@ export default function EditProfile() {
     try {
       const currentUser = await authService.getCurrentUser();
       if (currentUser) {
-        setFormData({
-          full_name: currentUser.full_name,
-          username: currentUser.username,
-          bio: (currentUser as any).bio || "",
-          profile_picture: (currentUser as any).profile_picture || "",
-        });
-        setPreviewUrl((currentUser as any).profile_picture || "");
-      }
+  setFormData({
+    full_name: currentUser.full_name,
+    username: currentUser.username,
+    bio: currentUser.bio ?? "",
+    profile_picture: currentUser.profile_picture ?? "",
+  });
+  setPreviewUrl(currentUser.profile_picture ?? "");
+}
     } catch (error) {
       console.error("Error loading user data:", error);
     }
@@ -104,7 +104,7 @@ export default function EditProfile() {
 
   return (
     <div className="profile-page">
-      <div className="profile-page-title">Profile edit</div>
+       
 
       {/* Header */}
       <div className="profile-header">

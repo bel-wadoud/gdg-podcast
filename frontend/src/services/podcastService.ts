@@ -33,6 +33,7 @@ export interface Guest {
   name: string;
   bio?: string;
   profile_picture?: string;
+   job_title?: string; 
 }
 
 export interface UserFeed {

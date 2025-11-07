@@ -4,7 +4,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-/* Header Styles */
+/* Header Styles - Landing Page Style */
 .homepage-header {
   display: flex;
   justify-content: space-between;
@@ -20,49 +20,65 @@
 }
 
 .header-logo {
-  height: 50px;
+  height: 60px;
   width: auto;
+  object-fit: contain;
 }
 
+/* Center Navigation Buttons - Landing Page Style */
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.nav-btn.top-podcast {
+  background-color: #fca5a5;
+  color: #fff;
+}
+
+.nav-btn.top-podcast:hover {
+  background-color: #f87171;
+}
+
+.nav-btn.voices {
+  background-color: #fef08a;
+  color: #000;
+}
+
+.nav-btn.voices:hover {
+  background-color: #fde047;
+}
+
+.nav-btn.about {
+  background-color: #86efac;
+  color: #000;
+}
+
+.nav-btn.about:hover {
+  background-color: #4ade80;
+}
+
+/* Right Side - Search & Auth */
 .header-right {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.header-btn {
-  padding: 8px 20px;
-  border: none;
-  border-radius: 20px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 0.9rem;
-}
-
-.header-btn.podcasts {
-  background-color: #fca5a5;
-  color: #fff;
-}
-
-.header-btn.contact {
-  background-color: #fef9c3;
-  color: #000;
-}
-
-.header-btn.profile {
-  background-color: #a7f3d0;
-  color: #000;
-}
-
-.header-btn:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
-}
-
 .search-container {
   position: relative;
-  width: 300px;
+  width: 250px;
 }
 
 .search-input {
@@ -80,6 +96,45 @@
   right: 15px;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.header-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.header-btn.login,
+.header-btn.signup {
+  background-color: #7dd3fc;
+  color: #000;
+}
+
+.header-btn.login:hover,
+.header-btn.signup:hover {
+  background-color: #38bdf8;
+}
+
+.header-btn.profile {
+  background-color: #a7f3d0;
+  color: #000;
+}
+
+.header-btn.profile:hover {
+  background-color: #6ee7b7;
+}
+
+.header-btn.logout {
+  background-color: #fca5a5;
+  color: #fff;
+}
+
+.header-btn.logout:hover {
+  background-color: #f87171;
 }
 
 /* Content Styles */
@@ -153,6 +208,12 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .video-thumbnail {
@@ -190,6 +251,12 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .category-thumbnail {
@@ -214,6 +281,12 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.watching-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .watching-thumbnail {
@@ -246,9 +319,28 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+  .header-center {
+    gap: 0.5rem;
+  }
+  
+  .nav-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .search-container {
+    width: 200px;
+  }
+}
+
 @media (max-width: 1024px) {
   .carousel-item {
     flex: 0 0 calc(50% - 0.75rem);
+  }
+  
+  .header-center {
+    display: none;
   }
 }
 
@@ -261,10 +353,12 @@
   .header-right {
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
   }
 
   .search-container {
     width: 100%;
+    order: -1;
   }
 
   .carousel-item {
@@ -273,5 +367,9 @@
 
   .homepage-content {
     padding: 1rem;
+  }
+  
+  .header-logo {
+    height: 50px;
   }
 }

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./../style/homepage.css";
-import logo from "../assets/images/about_us.png";
-import podcastService, { type Podcast,type Category } from "../services/podcastService";
+import logo from "../assets/images/about_us-removebg-preview.png";
+import podcastService, { type Podcast, type Category } from "../services/podcastService";
 import authService from "../services/authServices";
 
 export default function Homepage() {
@@ -45,17 +45,16 @@ export default function Homepage() {
         setCategories(cats);
       }
     } catch (err: unknown) {
-  if (err instanceof Error) {
-    setError(err.message);
-    console.error("Error loading data:", err);
-  } else {
-    setError("Failed to load content");
-    console.error("Unknown error:", err);
-  }
-} finally {
-  setLoading(false);
-}
-
+      if (err instanceof Error) {
+        setError(err.message);
+        console.error("Error loading data:", err);
+      } else {
+        setError("Failed to load content");
+        console.error("Unknown error:", err);
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleLogout = async () => {
@@ -66,9 +65,7 @@ export default function Homepage() {
   const handleCategoryClick = async (categoryId: number) => {
     try {
       const podcasts = await podcastService.getPodcastsByCategory(categoryId);
-      // Navigate to category page or update state
       console.log("Category podcasts:", podcasts);
-      // You can navigate to a category page: navigate(`/category/${categoryId}`);
     } catch (err) {
       console.error("Error loading category:", err);
     }
@@ -84,21 +81,38 @@ export default function Homepage() {
 
   return (
     <div className="homepage">
-      {/* Header */}
+      {/* Header - Landing Page Style */}
       <header className="homepage-header">
+        {/* Logo */}
         <div className="header-left">
           <img src={logo} alt="GDG Talks Logo" className="header-logo" />
         </div>
-        <div className="header-right">
-          <button className="header-btn podcasts" onClick={() => navigate("/podcasts")}>
-            Podcasts
+
+        {/* Navigation Buttons */}
+        <div className="header-center">
+          <button 
+            className="nav-btn top-podcast"
+            onClick={() => navigate("/podcasts")}
+          >
+            Top Podcast
           </button>
-          <button className="header-btn contact" onClick={() => navigate("/contact")}>
-            Contact
+          <button 
+            className="nav-btn voices"
+            onClick={() => navigate("/voices")}
+          >
+            Voices
           </button>
-          <button className="header-btn profile" onClick={() => navigate("/profile")}>
+           
+           <button 
+            className="nav-btn about"
+            onClick={() => navigate("/profile")}
+          >
             Profile
           </button>
+        </div>
+
+        {/* Right Side - Search & Auth */}
+        <div className="header-right">
           <div className="search-container">
             <input 
               type="text" 
@@ -107,20 +121,37 @@ export default function Homepage() {
             />
             <span className="search-icon">🔍</span>
           </div>
-          {authService.isAuthenticated() && (
-            <button 
-              onClick={handleLogout}
-              style={{
-                padding: "8px 16px",
-                background: "#ef4444",
-                color: "white",
-                border: "none",
-                borderRadius: "20px",
-                cursor: "pointer",
-              }}
-            >
-              Logout
-            </button>
+          
+          {authService.isAuthenticated() ? (
+            <>
+              <button 
+                className="header-btn profile"
+                onClick={() => navigate("/profile")}
+              >
+                Profile
+              </button>
+              <button 
+                className="header-btn logout"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <button 
+                className="header-btn login"
+                onClick={() => navigate("/login")}
+              >
+                Login
+              </button>
+              <button 
+                className="header-btn signup"
+                onClick={() => navigate("/signup")}
+              >
+                Sign Up
+              </button>
+            </>
           )}
         </div>
       </header>

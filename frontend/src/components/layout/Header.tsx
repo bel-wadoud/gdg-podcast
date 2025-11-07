@@ -1,7 +1,9 @@
 import logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
   return (
     <header className="flex flex-row items-center justify-between pt-4 text-black">
       {/* Logo */}
@@ -14,17 +16,26 @@ function Header() {
       </div>
 
       {/* Sections */}
-      <div className="hidden md:flex flex-row gap-8 text-lg">
-        <button className="bg-red-400 px-4 py-2 rounded-lg mr-4 hover:bg-red-500 transition duration-300">
-          Top Podcast
-        </button>
-        <button className="bg-amber-200 px-4 py-2 rounded-lg mr-4 hover:bg-amber-300 transition duration-300">
-          Voices
-        </button>
-        <button className="bg-green-300 px-4 py-2 rounded-lg mr-4 hover:bg-green-400 transition duration-300">
-          About
-        </button>
-      </div>
+      <div className="header-center">
+          <button 
+            className="nav-btn top-podcast"
+            onClick={() => navigate("/podcasts")}
+          >
+            Top Podcast
+          </button>
+          <button 
+            className="nav-btn voices"
+            onClick={() => navigate("/voices")}
+          >
+            Voices
+          </button>
+          <button 
+            className="nav-btn about"
+            onClick={() => navigate("/about")}
+          >
+            About
+          </button>
+        </div>
 
       {/* Login & Sign Up */}
       <div>

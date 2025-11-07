@@ -15,14 +15,19 @@ export interface RegisterCredentials {
   username?: string;
 }
 
+export interface UserProfile {
+  id: number;
+  email: string;
+  username: string;
+  full_name: string;
+  bio?: string;
+  profile_picture?: string;
+}
+
+
 export interface AuthResponse {
   token?: string;
-  user: {
-    id: number;
-    email: string;
-    username: string;
-    full_name: string;
-  };
+  user: UserProfile
 }
 
 class AuthService {
@@ -136,34 +141,33 @@ class AuthService {
   }
 
   // Get current user
-  async getCurrentUser(): Promise<AuthResponse['user'] | null> {
-    const token = this.getToken();
-    
-    if (!token) {
+     async getCurrentUser(): Promise<UserProfile | null> {
+  const token = this.getToken();
+  
+  if (!token) return null;
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/me`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      await this.logout();
       return null;
     }
 
-    try {
-      const response = await fetch(`${API_BASE_URL}/auth/me`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!response.ok) {
-        this.logout();
-        return null;
-      }
-
-      const data = await response.json();
-      return data.user;
-    } catch (error) {
-      console.error('Get current user error:', error);
-      return null;
-    }
+    const data = await response.json();
+    return data.user as UserProfile; // ✅ fully typed now
+  } catch (error) {
+    console.error('Get current user error:', error);
+    return null;
   }
+}
+
 
   // Reset password
   async resetPassword(email: string): Promise<void> {

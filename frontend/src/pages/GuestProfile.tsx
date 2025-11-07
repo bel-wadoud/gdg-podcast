@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./../style/profile.css";
-import logo from "../assets/images/about_us.png";
+import logo from "../assets/images/about_us-removebg-preview.png";
 import authService from "../services/authServices";
-import podcastService, { type Guest,type  Podcast } from "../services/podcastService";
+import podcastService, { type Guest ,type  Podcast } from "../services/podcastService";
 
 export default function GuestProfile() {
+ 
   const navigate = useNavigate();
   const { guestId } = useParams<{ guestId: string }>();
   const [guest, setGuest] = useState<Guest | null>(null);
@@ -104,11 +105,11 @@ export default function GuestProfile() {
         <div className="profile-field">
           <strong>Full name:</strong> {guest.name}
         </div>
-        {(guest as any).job_title && (
-          <div className="profile-field">
-            <strong>Job title:</strong> {(guest as any).job_title}
-          </div>
-        )}
+       {guest?.job_title && (
+  <div className="profile-field">
+    <strong>Job title:</strong> {guest.job_title}
+  </div>
+)}
         <div className="profile-field">
           <strong>Bio:</strong> {guest.bio || "No bio available"}
         </div>
