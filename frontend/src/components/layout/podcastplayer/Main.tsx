@@ -103,7 +103,7 @@ function Main() {
                 <div className="p-6 h-full flex flex-col gap-4 overflow-auto bg-[#F5F5F5] rounded-2xl">
                     <div className="flex items-center justify-between">
                         <h4 className="text-lg font-semibold text-gray-900">Comments</h4>
-                        <span className="text-sm text-gray-600">{/* count */}0 comments</span>
+
                     </div>
 
                     {/* Comments list + add comment UI implemented as an inline component so it can use hooks */}

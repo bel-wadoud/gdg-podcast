@@ -13,8 +13,8 @@ function Header () {
                     </div>
                     {/* sections  */}
                         <ul className="nav-list hidden md:flex flex-row gap-8 text-lg">
-                            <li className="nav-item"><Link to="/podcast" className="nav-link bg-red-400 px-6 py-2 border border-black rounded-2xl mr-4 hover:bg-red-500 transition duration-300">Podcasts</Link></li>
-                            <li className="nav-item"><Link to="/contact" className="nav-link bg-amber-200 px-6 py-2  border border-black rounded-2xl mr-4 hover:bg-amber-300 transition duration-300">Guests</Link></li>
+                            <li className="nav-item"><Link to="/homepage" className="nav-link bg-red-400 px-6 py-2 border border-black rounded-2xl mr-4 hover:bg-red-500 transition duration-300">Podcasts</Link></li>
+                            <li className="nav-item"><Link to="/guest" className="nav-link bg-amber-200 px-6 py-2  border border-black rounded-2xl mr-4 hover:bg-amber-300 transition duration-300">Guests</Link></li>
                             <li className="nav-item"><Link to="/profile" className="nav-link bg-green-300 px-6 py-2  border border-black rounded-2xl mr-4 hover:bg-green-400 transition duration-300">Profile</Link></li>
                         </ul>
                     {/* search bar */}
