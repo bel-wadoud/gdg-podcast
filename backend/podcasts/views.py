@@ -5,6 +5,9 @@ from .models import Podcast, Category
 from .serializers import PodcastSerializer, CategorySerializer
 from django.db.models import Count
 
+from drf_spectacular.types import OpenApiTypes
+from drf_spectacular.utils import extend_schema, OpenApiExample
+
 # -------------------------
 # Podcasts
 # -------------------------
@@ -101,39 +104,7 @@ def podcasts_by_category(request, category_id):
     return Response(serializer.data)
 
 
-@extend_schema(
-    summary="Create Podcast from YouTube URL",
-    description=(
-        "Creates a Podcast entry by extracting metadata from a YouTube video. "
-        "Requires a valid YouTube video URL. "
-        "If the podcast already exists, it returns an error."
-    ),
-    request=openapi.Schema(
-        type=openapi.TYPE_OBJECT,
-        properties={
-            'video_url': openapi.Schema(type=openapi.TYPE_STRING, description="YouTube Video URL"),
-            'audio_url': openapi.Schema(type=openapi.TYPE_STRING, description="URL to the extracted audio file"),
-            'guest': openapi.Schema(type=openapi.TYPE_INTEGER, description="Guest ID (user with role=podcaster)"),
-            'category': openapi.Schema(type=openapi.TYPE_ARRAY, items=openapi.Schema(type=openapi.TYPE_INTEGER), description="List of Category IDs")
-        },
-        required=['video_url']
-    ),
-    responses={
-        201: OpenApiResponse(description="Podcast created successfully"),
-        400: OpenApiResponse(description="Invalid request"),
-    },
-    examples=[
-        OpenApiExample(
-            'Example Payload',
-            value={
-                "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                "audio_url": "https://mycdn.com/audio/file.mp3",
-                "guest": 3,
-                "category": [1, 2]
-            }
-        )
-    ],
-)
+
 @api_view(['POST'])
 def create_podcast_from_youtube(request):
     """
