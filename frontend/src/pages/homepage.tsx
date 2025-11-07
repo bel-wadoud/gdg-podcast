@@ -54,9 +54,9 @@ export default function Homepage() {
       </div>
 
       {/* Center: Navigation */}
-      <nav className="header-center flex flex-wrap items-center gap-8 text-lg font-medium">
+      <nav className="flex flex-1 justify-center items-center gap-20 text-lg font-medium">
         <button
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/homepage")}
           className={`transition-colors duration-300 ${
             isActive("/homepage") ? "text-[#2e3ff5] font-semibold border-b-2 border-[#2e3ff5]" : "hover:text-[#2e3ff5]"
           }`}
@@ -71,9 +71,9 @@ export default function Homepage() {
           onMouseLeave={() => setShowDropdown(false)}
         >
           <button
-            onClick={() => navigate("/podcasts")}
+            onClick={() => navigate("/PodcastPlayer")}
             className={`transition-colors duration-300 ${
-              isActive("/podcasts")
+              isActive("/PodcastPlayer")
                 ? "text-[#b91d1d] font-semibold border-b-2 border-[#b91d1d]"
                 : "hover:text-[#b91d1d]"
             }`}
@@ -115,7 +115,7 @@ export default function Homepage() {
               : "hover:text-[#1DB954]"
           }`}
         >
-          Trending
+         Trending
         </button>
       </nav>
 

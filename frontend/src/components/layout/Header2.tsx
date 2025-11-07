@@ -43,9 +43,9 @@ function Header2() {
           onMouseLeave={() => setShowDropdown(false)}
         >
           <button
-            onClick={() => navigate("/podcasts")}
+            onClick={() => navigate("/PodcastPlayer")}
             className={`transition-colors duration-300 ${
-              isActive("/podcasts")
+              isActive("/PodcastPlayer")
                 ? "text-[#b91d1d] font-semibold border-b-2 border-[#b91d1d]"
                 : "hover:text-[#b91d1d]"
             }`}

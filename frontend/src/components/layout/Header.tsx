@@ -22,7 +22,7 @@ function Header() {
           onClick={() => navigate("/")}
           className="hover:text-[#2e3ff5] transition-colors duration-300 font-medium"
         >
-          Home
+          About us
         </button>
         <button
           onClick={() => navigate("/podcasts")}
