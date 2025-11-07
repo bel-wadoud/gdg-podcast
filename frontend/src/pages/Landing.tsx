@@ -4,6 +4,7 @@ import Explore from "@/components/layout/Explore";
 import Header from "@/components/layout/Header";
 import Voices from "@/components/layout/Voices";
 import Footer from "@/components/layout/Footer";
+import GeneralCard from "@/components/common/GeneralCard";
 
 function Landing() {
   return (
@@ -15,8 +16,10 @@ function Landing() {
       {/* // About Section */}
       <About />
       <Features />
+
       {/* // Features Section */}
       {/* // Podcast Section */}
+      <GeneralCard />
       {/* // Categories Section */}
       {/* // Voices Section */}
       <Voices />
