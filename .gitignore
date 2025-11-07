@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.swp
+*.egg-info/
+*.egg
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+
+# Django
+*.log
+*.pot
+*.pyc
+*.pyo
+db.sqlite3
+media/
+staticfiles/
+
+# Environment variables
+.env
+
+# IDEs / editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Pytest / coverage
+htmlcov/
+.coverage
+.tox/
+.nox/
+.pytest_cache/
+
+# node_modules (if frontend included)
+node_modules/
+
