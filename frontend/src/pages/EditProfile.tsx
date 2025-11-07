@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./../style/profile.css";
 import logo from "../assets/images/about_us-removebg-preview.png";
 import authService from "../services/authServices";
+import Header from "@/components/layout/Header2";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL  ||'http://localhost:8000/api';
 
@@ -107,20 +108,7 @@ export default function EditProfile() {
        
 
       {/* Header */}
-      <div className="profile-header">
-        <img src={logo} alt="GDG Talks Logo" className="profile-logo" />
-        <div className="profile-nav">
-          <button className="profile-nav-btn podcasts" onClick={() => navigate("/")}>
-            Podcasts
-          </button>
-          <button className="profile-nav-btn contact" onClick={() => navigate("/contact")}>
-            Contact
-          </button>
-          <button className="profile-nav-btn profile" onClick={() => navigate("/profile")}>
-            Profile
-          </button>
-        </div>
-      </div>
+       <Header/>
 
       {/* Edit Profile Container */}
       <div className="edit-profile-container">

@@ -1,172 +1,143 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import "./../style/homepage.css";
+ 
+import { useNavigate } from "react-router-dom";
+import "./../style/profile.css";
 import logo from "../assets/images/about_us-removebg-preview.png";
-import podcastService, { type Podcast, type Category } from "../services/podcastService";
-import authService from "../services/authServices";
+
+import { useLocation } from "react-router-dom";
+ 
+
 
 export default function Homepage() {
+
   const navigate = useNavigate();
+  const location = useLocation();
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const isActive = (path: string) => location.pathname === path
   const [forYouIndex, setForYouIndex] = useState(0);
   const [categoriesIndex, setCategoriesIndex] = useState(0);
   const [watchingIndex, setWatchingIndex] = useState(0);
 
-  // State for API data
-  const [forYouItems, setForYouItems] = useState<Podcast[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [continueWatching, setContinueWatching] = useState<Array<Podcast & { progress: number }>>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  // Sample data - replace with your actual content
+  const forYouItems = [
+    { id: 1, title: "THE RISE OF SPACEX", thumbnail: "/placeholder1.jpg" },
+    { id: 2, title: "land your dream job", thumbnail: "/placeholder2.jpg" },
+    { id: 3, title: "IMAGINE THE FUTURE", thumbnail: "/placeholder3.jpg" },
+  ];
 
-  useEffect(() => {
-    loadData();
-  }, []);
+  const categories = [
+    { id: 1, title: "Technology", thumbnail: "/category1.jpg" },
+    { id: 2, title: "Business", thumbnail: "/category2.jpg" },
+    { id: 3, title: "Science", thumbnail: "/category3.jpg" },
+  ];
 
-  const loadData = async () => {
-    try {
-      setLoading(true);
-      
-      // Check if user is authenticated
-      const isAuth = authService.isAuthenticated();
-      
-      if (isAuth) {
-        // Load personalized feed for authenticated users
-        const feed = await podcastService.getUserFeed();
-        setForYouItems(feed.recommended || []);
-        setCategories(feed.categories || []);
-        setContinueWatching(feed.continue_watching || []);
-      } else {
-        // Load public data for non-authenticated users
-        const [podcasts, cats] = await Promise.all([
-          podcastService.getAllPodcasts(),
-          podcastService.getCategories(),
-        ]);
-        setForYouItems(podcasts.slice(0, 10)); // Show first 10
-        setCategories(cats);
-      }
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        setError(err.message);
-        console.error("Error loading data:", err);
-      } else {
-        setError("Failed to load content");
-        console.error("Unknown error:", err);
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleLogout = async () => {
-    await authService.logout();
-    navigate("/login");
-  };
-
-  const handleCategoryClick = async (categoryId: number) => {
-    try {
-      const podcasts = await podcastService.getPodcastsByCategory(categoryId);
-      console.log("Category podcasts:", podcasts);
-    } catch (err) {
-      console.error("Error loading category:", err);
-    }
-  };
-
-  if (loading) {
-    return (
-      <div className="homepage" style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
-        <div>Loading...</div>
-      </div>
-    );
-  }
+  const continueWatching = [
+    { id: 1, title: "Video 1", progress: 45, thumbnail: "/watching1.jpg" },
+    { id: 2, title: "Video 2", progress: 70, thumbnail: "/watching2.jpg" },
+    { id: 3, title: "Video 3", progress: 20, thumbnail: "/watching3.jpg" },
+  ];
 
   return (
     <div className="homepage">
-      {/* Header - Landing Page Style */}
-      <header className="homepage-header">
-        {/* Logo */}
-        <div className="header-left">
-          <img src={logo} alt="GDG Talks Logo" className="header-logo" />
-        </div>
+      {/* Header */}
+          <header className="homepage-header flex flex-wrap items-center justify-between px-6 py-4 shadow-md bg-white">
+      {/* Left: Logo */}
+      <div className="header-left flex items-center">
+        <img
+          src={logo}
+          alt="GDG Talks Logo"
+          className="h-10 sm:h-12 cursor-pointer"
+          onClick={() => navigate("/")}
+        />
+      </div>
 
-        {/* Navigation Buttons */}
-        <div className="header-center">
-          <button 
-            className="nav-btn top-podcast"
+      {/* Center: Navigation */}
+      <nav className="header-center flex flex-wrap items-center gap-8 text-lg font-medium">
+        <button
+          onClick={() => navigate("/")}
+          className={`transition-colors duration-300 ${
+            isActive("/homepage") ? "text-[#2e3ff5] font-semibold border-b-2 border-[#2e3ff5]" : "hover:text-[#2e3ff5]"
+          }`}
+        >
+          Home
+        </button>
+
+        {/* Podcasts Dropdown */}
+        <div
+          className="relative"
+          onMouseEnter={() => setShowDropdown(true)}
+          onMouseLeave={() => setShowDropdown(false)}
+        >
+          <button
             onClick={() => navigate("/podcasts")}
+            className={`transition-colors duration-300 ${
+              isActive("/podcasts")
+                ? "text-[#b91d1d] font-semibold border-b-2 border-[#b91d1d]"
+                : "hover:text-[#b91d1d]"
+            }`}
           >
-            Top Podcast
+            Podcasts ▾
           </button>
-          <button 
-            className="nav-btn voices"
-            onClick={() => navigate("/voices")}
-          >
-            Voices
-          </button>
-           
-           <button 
-            className="nav-btn about"
-            onClick={() => navigate("/profile")}
-          >
-            Profile
-          </button>
-        </div>
 
-        {/* Right Side - Search & Auth */}
-        <div className="header-right">
-          <div className="search-container">
-            <input 
-              type="text" 
-              placeholder="Search" 
-              className="search-input"
-            />
-            <span className="search-icon">🔍</span>
-          </div>
-          
-          {authService.isAuthenticated() ? (
-            <>
-              <button 
-                className="header-btn profile"
-                onClick={() => navigate("/profile")}
-              >
-                Profile
-              </button>
-              <button 
-                className="header-btn logout"
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <button 
-                className="header-btn login"
-                onClick={() => navigate("/login")}
-              >
-                Login
-              </button>
-              <button 
-                className="header-btn signup"
-                onClick={() => navigate("/signup")}
-              >
-                Sign Up
-              </button>
-            </>
+          {showDropdown && (
+            <div className="absolute left-0 mt-2 w-40 bg-white border rounded-lg shadow-lg z-50">
+              <ul className="flex flex-col text-sm">
+                <li
+                  onClick={() => navigate("/podcasts/tech")}
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                >
+                  Tech
+                </li>
+                <li
+                  onClick={() => navigate("/podcasts/design")}
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                >
+                  Design
+                </li>
+                <li
+                  onClick={() => navigate("/podcasts/startups")}
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                >
+                  Startups
+                </li>
+              </ul>
+            </div>
           )}
         </div>
-      </header>
 
-      {error && (
-        <div style={{
-          backgroundColor: "#fee2e2",
-          color: "#991b1b",
-          padding: "12px 20px",
-          margin: "1rem 2rem",
-          borderRadius: "8px",
-        }}>
-          {error}
+        <button
+          onClick={() => navigate("/trending")}
+          className={`transition-colors duration-300 ${
+            isActive("/trending")
+              ? "text-[#1DB954] font-semibold border-b-2 border-[#1DB954]"
+              : "hover:text-[#1DB954]"
+          }`}
+        >
+          Trending
+        </button>
+      </nav>
+
+      {/* Right: Search + Profile */}
+      <div className="header-right flex items-center gap-4 mt-4 sm:mt-0">
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Search"
+            className="search-input border rounded-full px-4 py-1 focus:outline-none focus:ring focus:ring-[#2e3ff5]"
+          />
+          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">🔍</span>
         </div>
-      )}
+
+        <button
+          className="profile-nav-btn px-4 py-1 rounded-full bg-[#2e3ff5] text-white hover:bg-[#1b2edc] transition"
+          onClick={() => navigate("/profile")}
+        >
+          Profile
+        </button>
+      </div>
+    </header>
 
       <div className="homepage-content">
         {/* For You Section */}
@@ -181,13 +152,13 @@ export default function Homepage() {
               &lt;
             </button>
             <div className="carousel-track">
-              {forYouItems.slice(forYouIndex, forYouIndex + 3).map((item) => (
-                <div key={item.id} className="carousel-item">
-                  <div 
-                    className="video-card"
-                    onClick={() => navigate(`/podcast/${item.id}`)}
-                    style={{ cursor: "pointer" }}
-                  >
+              {forYouItems.map((item,  ) => (
+                <div 
+                  key={item.id} 
+                  className="carousel-item"
+                  style={{ transform: `translateX(-${forYouIndex * 100}%)` }}
+                >
+                  <div className="video-card">
                     <div className="video-thumbnail">
                       <img src={item.thumbnail} alt={item.title} />
                       <div className="video-overlay">{item.title}</div>
@@ -198,8 +169,8 @@ export default function Homepage() {
             </div>
             <button 
               className="carousel-arrow right"
-              onClick={() => setForYouIndex(Math.min(forYouItems.length - 3, forYouIndex + 1))}
-              disabled={forYouIndex >= forYouItems.length - 3}
+              onClick={() => setForYouIndex(Math.min(forYouItems.length - 1, forYouIndex + 1))}
+              disabled={forYouIndex === forYouItems.length - 1}
             >
               &gt;
             </button>
@@ -218,16 +189,15 @@ export default function Homepage() {
               &lt;
             </button>
             <div className="carousel-track">
-              {categories.slice(categoriesIndex, categoriesIndex + 3).map((item) => (
-                <div key={item.id} className="carousel-item">
-                  <div 
-                    className="category-card"
-                    onClick={() => handleCategoryClick(item.id)}
-                    style={{ cursor: "pointer" }}
-                  >
+              {categories.map((item, ) => (
+                <div 
+                  key={item.id} 
+                  className="carousel-item"
+                  style={{ transform: `translateX(-${categoriesIndex * 100}%)` }}
+                >
+                  <div className="category-card">
                     <div className="category-thumbnail">
-                      <img src={item.thumbnail || "/placeholder-category.jpg"} alt={item.name} />
-                      <div className="video-overlay">{item.name}</div>
+                      <img src={item.thumbnail} alt={item.title} />
                     </div>
                   </div>
                 </div>
@@ -235,57 +205,55 @@ export default function Homepage() {
             </div>
             <button 
               className="carousel-arrow right"
-              onClick={() => setCategoriesIndex(Math.min(categories.length - 3, categoriesIndex + 1))}
-              disabled={categoriesIndex >= categories.length - 3}
+              onClick={() => setCategoriesIndex(Math.min(categories.length - 1, categoriesIndex + 1))}
+              disabled={categoriesIndex === categories.length - 1}
             >
               &gt;
             </button>
           </div>
         </section>
 
-        {/* Continue Watching Section - Only for authenticated users */}
-        {authService.isAuthenticated() && continueWatching.length > 0 && (
-          <section className="content-section">
-            <h2 className="section-title">Continue Watching</h2>
-            <div className="carousel-container">
-              <button 
-                className="carousel-arrow left"
-                onClick={() => setWatchingIndex(Math.max(0, watchingIndex - 1))}
-                disabled={watchingIndex === 0}
-              >
-                &lt;
-              </button>
-              <div className="carousel-track">
-                {continueWatching.slice(watchingIndex, watchingIndex + 3).map((item) => (
-                  <div key={item.id} className="carousel-item">
-                    <div 
-                      className="watching-card"
-                      onClick={() => navigate(`/podcast/${item.id}`)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <div className="watching-thumbnail">
-                        <img src={item.thumbnail} alt={item.title} />
-                      </div>
-                      <div className="progress-bar">
-                        <div 
-                          className="progress-fill" 
-                          style={{ width: `${item.progress}%` }}
-                        ></div>
-                      </div>
+        {/* Continue Watching Section */}
+        <section className="content-section">
+          <h2 className="section-title">Continue Watching</h2>
+          <div className="carousel-container">
+            <button 
+              className="carousel-arrow left"
+              onClick={() => setWatchingIndex(Math.max(0, watchingIndex - 1))}
+              disabled={watchingIndex === 0}
+            >
+              &lt;
+            </button>
+            <div className="carousel-track">
+              {continueWatching.map((item, ) => (
+                <div 
+                  key={item.id} 
+                  className="carousel-item"
+                  style={{ transform: `translateX(-${watchingIndex * 100}%)` }}
+                >
+                  <div className="watching-card">
+                    <div className="watching-thumbnail">
+                      <img src={item.thumbnail} alt={item.title} />
+                    </div>
+                    <div className="progress-bar">
+                      <div 
+                        className="progress-fill" 
+                        style={{ width: `${item.progress}%` }}
+                      ></div>
                     </div>
                   </div>
-                ))}
-              </div>
-              <button 
-                className="carousel-arrow right"
-                onClick={() => setWatchingIndex(Math.min(continueWatching.length - 3, watchingIndex + 1))}
-                disabled={watchingIndex >= continueWatching.length - 3}
-              >
-                &gt;
-              </button>
+                </div>
+              ))}
             </div>
-          </section>
-        )}
+            <button 
+              className="carousel-arrow right"
+              onClick={() => setWatchingIndex(Math.min(continueWatching.length - 1, watchingIndex + 1))}
+              disabled={watchingIndex === continueWatching.length - 1}
+            >
+              &gt;
+            </button>
+          </div>
+        </section>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 // src/services/authService.ts
+// src/services/authService.ts
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
-
+const API_BASE_URL = import.meta.env.VITE_API_URL  || 'http://127.0.0.1:8000/users';
 
 export interface LoginCredentials {
   email: string;
@@ -15,25 +15,20 @@ export interface RegisterCredentials {
   username?: string;
 }
 
-export interface UserProfile {
-  id: number;
-  email: string;
-  username: string;
-  full_name: string;
-  bio?: string;
-  profile_picture?: string;
-}
-
-
 export interface AuthResponse {
   token?: string;
-  user: UserProfile
+  user: {
+    id: number;
+    email: string;
+    username: string;
+    full_name: string;
+  };
 }
 
 class AuthService {
   // Register with email/password
   async register(credentials: RegisterCredentials): Promise<AuthResponse> {
-    const response = await fetch(`${API_BASE_URL}/auth/register`, {
+    const response = await fetch(`${API_BASE_URL}/register/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -55,7 +50,7 @@ class AuthService {
 
   // Login with email/password
   async login(credentials: LoginCredentials): Promise<AuthResponse> {
-    const response = await fetch(`${API_BASE_URL}/auth/login`, {
+    const response = await fetch(`${API_BASE_URL}/login/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -77,7 +72,7 @@ class AuthService {
 
   // Google OAuth Login
   async loginWithGoogle(googleToken: string): Promise<AuthResponse> {
-    const response = await fetch(`${API_BASE_URL}/auth/login/google`, {
+    const response = await fetch(`${API_BASE_URL}login/google`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -141,33 +136,34 @@ class AuthService {
   }
 
   // Get current user
-     async getCurrentUser(): Promise<UserProfile | null> {
-  const token = this.getToken();
-  
-  if (!token) return null;
-
-  try {
-    const response = await fetch(`${API_BASE_URL}/auth/me`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!response.ok) {
-      await this.logout();
+  async getCurrentUser(): Promise<AuthResponse['user'] | null> {
+    const token = this.getToken();
+    
+    if (!token) {
       return null;
     }
 
-    const data = await response.json();
-    return data.user as UserProfile; // ✅ fully typed now
-  } catch (error) {
-    console.error('Get current user error:', error);
-    return null;
-  }
-}
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/me`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
 
+      if (!response.ok) {
+        this.logout();
+        return null;
+      }
+
+      const data = await response.json();
+      return data.user;
+    } catch (error) {
+      console.error('Get current user error:', error);
+      return null;
+    }
+  }
 
   // Reset password
   async resetPassword(email: string): Promise<void> {

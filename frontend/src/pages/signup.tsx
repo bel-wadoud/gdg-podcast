@@ -103,10 +103,8 @@ const isPasswordValid =
       // Initialize Google OAuth
       alert("Google signup not yet implemented. Add Google OAuth SDK first.");
       
-      // Example flow (after implementing Google OAuth):
-      // const googleToken = await getGoogleToken();
-      // await authService.signupWithGoogle(googleToken);
-      // navigate("/");
+       
+       
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message);

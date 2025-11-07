@@ -1,57 +1,47 @@
+import {  useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 function Header() {
   const navigate = useNavigate();
+
   return (
-    <header className="flex flex-row items-center justify-between pt-4 text-black">
+    <header className="flex flex-row items-center justify-between bg-[#ffffff] text-black px-8 py-4 ">
       {/* Logo */}
-      <div>
+      <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/")}>
         <img
           src={logo}
           alt="Logo"
-          className="w-auto h-10 sm:h-14 md:h-20 lg:h-24 xl:h-28 inline-block mr-2 object-contain"
+          className="h-10 sm:h-12 object-contain"
         />
+        <span className="font-semibold text-lg hidden sm:block">GDG Podcasts </span>
       </div>
 
-      {/* Sections */}
-      <div className="header-center">
-          <button 
-            className="nav-btn top-podcast"
-            onClick={() => navigate("/podcasts")}
-          >
-            Top Podcast
-          </button>
-          <button 
-            className="nav-btn voices"
-            onClick={() => navigate("/voices")}
-          >
-            Voices
-          </button>
-          <button 
-            className="nav-btn about"
-            onClick={() => navigate("/about")}
-          >
-            About
-          </button>
-        </div>
+      {/* Navigation links */}
+      <nav className="flex gap-8">
+        <button
+          onClick={() => navigate("/")}
+          className="hover:text-[#2e3ff5] transition-colors duration-300 font-medium"
+        >
+          Home
+        </button>
+        <button
+          onClick={() => navigate("/podcasts")}
+          className="hover:text-[#b91d1d] transition-colors duration-300 font-medium"
+        >
+          Podcasts
+        </button>
+        <button
+          onClick={() => navigate("/trending")}
+          className="hover:text-[#1DB954] transition-colors duration-300 font-medium"
+        >
+          Trending
+        </button>
+      </nav>
 
-      {/* Login & Sign Up */}
-      <div>
-        <Link
-          to="/login"
-          className="bg-sky-300 px-4 py-2 rounded-lg mr-4 hover:bg-sky-400 transition duration-300"
-        >
-          Login
-        </Link>
-        <Link
-          to="/signup"
-          className="bg-sky-300 px-4 py-2 rounded-lg mr-4 hover:bg-sky-400 transition duration-300"
-        >
-          Sign Up
-        </Link>
-      </div>
+      {/* Profile / Auth buttons */}
+        <button className="profile-nav-btn profile" onClick={() => navigate("/singup")}>
+            Sign-up
+          </button>
     </header>
   );
 }
