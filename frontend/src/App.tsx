@@ -2,10 +2,10 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import Landing from "./pages/Landing";
-import Homepage from './pages/homepage';
-import UserProfile from './pages/UserProfile';
-import EditProfile from './pages/EditProfile';
-import GuestProfile from './pages/GuestProfile';
+import Homepage from "./pages/homepage";
+import UserProfile from "./pages/UserProfile";
+import EditProfile from "./pages/EditProfile";
+import GuestProfile from "./pages/GuestProfile";
 export default function App() {
   return (
     <Routes>
